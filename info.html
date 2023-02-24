@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drag between browser tabs</title>
+</head>
+<body>
+    <div draggable="true" ondragstart="dragstart_handler(event)">把我拖到其他tab页</div>
+    <script>
+        function dragstart_handler(e){
+            console.log(e.target.innerText)
+            e.dataTransfer.setData('text',e.target.innerText)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            background-color: aqua;
+            width: 100px;
+            height: 100px;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+        }
+        .container{
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+        }
+        .element-container{
+            display: flex;
+        }
+        .normal{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body >
+    <div class="element-container">
+        <div class="div1" draggable="true" ondragstart="dragDiv(event)" id="div1"></div>
+        <img src="aimg/11.png" alt="" >
+        <div class="normal">普通document元素</div>
+    </div>
+    
+    <div class="container" id="container">
+    </div>
+    <script>
+        function dragDiv(e){
+            e.dataTransfer.setData('text',e.target.id);
+        }
+       
+        var target = document.getElementById('container');
+        target.ondragover=function(e){
+           e.preventDefault()
+        }
+        target.ondrop=function(e){
+            console.log('drop',e.dataTransfer.getData('text'));
+            console.log('drop',e.dataTransfer.getData('text/uri-list'));
+            e.preventDefault()
+            window.ee=e
+            this.appendChild(document.getElementById(e.dataTransfer.getData('text')))
+        }
+    </script>
+</body>
+</html>
